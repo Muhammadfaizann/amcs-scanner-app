@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localization="clr-namespace:amcs_scanner_app.Resources.Localization"
+             x:Class="amcs_scanner_app.View.LoginPage"
+             Shell.BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"
+             Shell.ForegroundColor="{AppThemeBinding Light=Black,Dark=White}"
+             BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"
+             Shell.FlyoutBehavior="Disabled">
+    <FlexLayout x:Name="LoginFlexLayout"
+                Direction="Column"
+                JustifyContent="SpaceEvenly"
+                AlignItems="Stretch"
+                SizeChanged="LayoutSizeChanged">
+        <Image FlexLayout.Basis="68"
+               Source="logodelta_weiss_730x135.png"
+               SemanticProperties.Description="Logo of am Computersysteme"
+               HorizontalOptions="Center" />
+        <Label x:Name="TitleLbl"
+               Text="{x:Static localization:AppResources.LoginTitle}"
+               SemanticProperties.HeadingLevel="Level1"
+               TextColor="{AppThemeBinding Light=Black,Dark=White}"
+               FontSize="18"
+               HorizontalOptions="Center" />
+        <Label x:Name="TextLbl"
+               Text="{x:Static localization:AppResources.LoginText}"
+               SemanticProperties.HeadingLevel="Level1"
+               TextColor="{AppThemeBinding Light=Black,Dark=White}"
+               FontSize="18"
+               HorizontalOptions="Center" />
+        <Border BackgroundColor="{AppThemeBinding Light=Transparent,Dark=White}"
+                Stroke="{AppThemeBinding Light=Black,Dark=White}"
+                StrokeShape="RoundRectangle 40,40,40,40"
+                Margin="20,0,20,0">
+            <Entry x:Name="UserToken"
+                   Keyboard="Chat"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   VerticalOptions="Center"
+                   MaxLength="45"
+                   FontSize="18"
+                   TextColor="{StaticResource Neutral12}"
+                   Placeholder="Kennzahl"
+                   PlaceholderColor="{StaticResource Neutral03}"
+                   IsTextPredictionEnabled="False"
+                   IsSpellCheckEnabled="False"
+                   Completed="UserTokenCompleted" />
+        </Border>
+        <Button x:Name="LoginBtn"
+                Text="{x:Static localization:AppResources.Login}"
+                Margin="20,0,20,0"
+                TextColor="{StaticResource Neutral01}"
+                BackgroundColor="{StaticResource Gray400}"
+                CornerRadius="45" />
+        <Button x:Name="Reconnect"
+                Text="Refresh"
+                TextColor="{StaticResource Neutral01}"
+                BackgroundColor="{StaticResource Gray400}"
+                CornerRadius="45" />
+        <HorizontalStackLayout HorizontalOptions="Center"
+                               VerticalOptions="Center">
+            <CheckBox Color="Black"
+                      CheckedChanged="CheckBox_CheckedChanged" />
+            <Label Text="{x:Static localization:AppResources.StayLoggedIn}"
+                   FontSize="18"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+        </HorizontalStackLayout>
+        <Label x:Name="OrScanLbl"
+               Text="{x:Static localization:AppResources.OrScan}"
+               SemanticProperties.HeadingLevel="Level1"
+               TextColor="{AppThemeBinding Light=Black,Dark=White}"
+               FontSize="18"
+               HorizontalOptions="Center" />
+        <Image x:Name="ScannenImg"
+               FlexLayout.Basis="120"
+               Source="{AppThemeBinding Light=light_barcode_scannen.png,Dark=dark_barcode_scannen.png}"
+               SemanticProperties.Description="Logo of am Computersysteme"
+               HorizontalOptions="Center" />
+        <Label x:Name="ErrorMessage"
+               Text="Anmeldung fehlgeschlagen."
+               SemanticProperties.HeadingLevel="Level2"
+               SemanticProperties.Description="Error: Nutzerkennung nicht in der Datenbank vorhanden."
+               TextColor="{StaticResource Error5}"
+               FontSize="18"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"
+               IsVisible="False" />
+        <!-- Sprache auswählen -->
+        <Picker x:Name="LanguagePicker"
+                Title="{x:Static localization:AppResources.ChangeLanguage}"
+                SelectedIndexChanged="UpdateLanguage"
+                HorizontalOptions="Center"
+                TitleColor="{AppThemeBinding Light=Black,Dark=White}">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>de-DE</x:String>
+                    <x:String>en-US</x:String>
+                    <x:String>fr-FR</x:String>
+                    <x:String>es-ES</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Label x:Name="VersionNumberlbl"
+               FontSize="18"
+               HorizontalTextAlignment="End"
+               Margin="0,0,25,0" />
+    </FlexLayout>
+</ContentPage>

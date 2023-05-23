@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localization="clr-namespace:amcs_scanner_app.Resources.Localization"
+             x:Class="amcs_scanner_app.View.FlyoutSettings"
+             Shell.BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"
+             Shell.ForegroundColor="{AppThemeBinding Light=Black,Dark=White}"
+             BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False"
+             Shell.FlyoutBehavior="Flyout">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False"
+                            IsVisible="False" />
+    </Shell.BackButtonBehavior>
+     <Shell.TitleView>
+        <Grid  ColumnDefinitions="auto,*" BackgroundColor="{AppThemeBinding Light=White,Dark=Black}">
+            <ImageButton Grid.Column="0" Source="{AppThemeBinding Light=hamburger_light.png,Dark=hamburger_dark.png}" Clicked="FlyoutOpen" BorderColor="Black" BorderWidth="0" BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"  WidthRequest="50" HeightRequest="50"></ImageButton>
+
+            <Image Grid.Column="1"  Margin="50,50,50,50"
+                Source="logodelta_weiss_730x135.png"
+                SemanticProperties.Description="Logo of Am-Computersysteme"
+                HeightRequest="30"
+                HorizontalOptions="End"/>
+        </Grid>
+    </Shell.TitleView>
+    <Grid RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="auto,auto" VerticalOptions="Center" HorizontalOptions="Center" RowSpacing="0" Margin="20,20,20,20">
+       
+            <Label Grid.Column="0" Grid.Row="0"
+                FontSize="18"
+                   Text="{x:Static localization:AppResources.MultipleSelection}"
+                   VerticalTextAlignment="Center" />
+            <Switch Grid.Column="1" Grid.Row="0"
+                Margin="20,0,0,0"
+                    IsToggled="True"
+                    Toggled="Switch_Toggled" />
+        
+        
+            <Label Grid.Column="0" Grid.Row="1"
+                FontSize="18"
+                   Text="Sequentielle Kommissionierung"
+                   VerticalTextAlignment="Center"
+                   MaximumWidthRequest="220" />
+            <Switch Grid.Column="1" Grid.Row="1"
+                x:Name="SequentialPicking"
+                    Margin="20,0,0,0"
+                    IsToggled="True"
+                    Toggled="SequentialPickingToggled" />
+      
+        
+            <Label Grid.Column="0" Grid.Row="2"
+                FontSize="18"
+                   Text="Drucken pro Position"
+                   VerticalTextAlignment="Center" />
+            <Switch Grid.Column="1" Grid.Row="2"
+                x:Name="PrintPerPosition"
+                    Margin="20,0,0,0"
+                    IsToggled="True"
+                    Toggled="PrintPerPositionToggled" />
+       
+    
+            <Label Grid.Column="0" Grid.Row="3"
+                FontSize="18"
+                   Text="Drucken beim Start"
+                   VerticalTextAlignment="Center" />
+            <Switch Grid.Column="1" Grid.Row="3"
+                x:Name="PrintAtStart"
+                    Margin="20,0,0,0"
+                    IsToggled="True"
+                    Toggled="PrintAtStartToggled" />
+        
+
+            <Label Grid.Column="0" Grid.Row="4"
+                FontSize="18"
+                   Text="Drucken am Ende"
+                   VerticalTextAlignment="Center" />
+            <Switch Grid.Column="1" Grid.Row="4"
+                x:Name="PrintAtEnd"
+                    Margin="20,0,0,0"
+                    IsToggled="True"
+                    Toggled="PrintAtEndToggled" />
+        
+        <Button Grid.Row="5" Grid.ColumnSpan="2" 
+            Text="Zur Übersicht"
+                Clicked="BackToOverviewPage"
+                Margin="30,0,30,0" />
+    </Grid>
+</ContentPage>

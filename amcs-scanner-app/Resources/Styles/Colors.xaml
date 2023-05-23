@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="Primary">#217fc1</Color>
+    <Color x:Key="Secondary">#DFD8F7</Color>
+    <Color x:Key="Tertiary">#2157c1</Color>
+    <Color x:Key="LogoGrey">#6f6e6d</Color>
+    <Color x:Key="White">White</Color>
+    <Color x:Key="Black">Black</Color>
+    <Color x:Key="Gray100">#E1E1E1</Color>
+    <Color x:Key="Gray200">#C8C8C8</Color>
+    <Color x:Key="Gray300">#ACACAC</Color>
+    <Color x:Key="Gray400">#919191</Color>
+    <Color x:Key="Gray500">#6E6E6E</Color>
+    <Color x:Key="Gray600">#404040</Color>
+    <Color x:Key="Gray900">#212121</Color>
+    <Color x:Key="Gray950">#141414</Color>
+
+    <!--0 Neu #778899  -->
+    <!--1 Abgeholt #FFA500 -->
+    <!--2 Begonnen #B8860B -->
+    <!--3 Unterbrochen #FFFF00 -->
+    <!--4 Abgeschlossen #008000 -->
+    <!--5 Gelöscht #F08080 -->
+    <!--9 Fehlerhaft #F00000 -->
+    <Color x:Key="StatusNew">#778899</Color>
+    <Color x:Key="StatusReceived">#FFA500</Color>
+    <Color x:Key="StatusStarted">#B8860B</Color>
+    <Color x:Key="StatusInterrupted">#FFFF00</Color>
+    <Color x:Key="StatusFinish">#008000</Color>
+    <Color x:Key="StatusDeleted">#F08080</Color>
+    <Color x:Key="StatusIncorrect">#F00000</Color>
+    <Color x:Key="StatusCache">#FFFF00</Color>
+    
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
+    <SolidColorBrush x:Key="LogoGreyBrush" Color="{StaticResource LogoGrey}"/>
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
+    <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>
+    <SolidColorBrush x:Key="Gray200Brush" Color="{StaticResource Gray200}"/>
+    <SolidColorBrush x:Key="Gray300Brush" Color="{StaticResource Gray300}"/>
+    <SolidColorBrush x:Key="Gray400Brush" Color="{StaticResource Gray400}"/>
+    <SolidColorBrush x:Key="Gray500Brush" Color="{StaticResource Gray500}"/>
+    <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
+    <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
+    <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    <Color x:Key="Yellow100Accent">#F7B548</Color>
+    <Color x:Key="Yellow200Accent">#FFD590</Color>
+    <Color x:Key="Yellow300Accent">#FFE5B9</Color>
+    <Color x:Key="Cyan100Accent">#28C2D1</Color>
+    <Color x:Key="Cyan200Accent">#7BDDEF</Color>
+    <Color x:Key="Cyan300Accent">#C3F2F4</Color>
+    <Color x:Key="Blue100Accent">#3E8EED</Color>
+    <Color x:Key="Blue200Accent">#72ACF1</Color>
+    <Color x:Key="Blue300Accent">#A7CBF6</Color>
+
+    <Color x:Key="Accent00">#217FC1</Color>
+    <Color x:Key="Accent01">#4292CB</Color>
+    <Color x:Key="Accent02">#6AABD9</Color>
+    <Color x:Key="Accent03">#ACCFE8</Color>
+    <Color x:Key="Accent04">#0869AD</Color>
+    <Color x:Key="Accent05">#064D80</Color>
+    <Color x:Key="Accent06">#082030</Color>
+
+    <Color x:Key="ComplemenairAccent00">#FF9D1E</Color>
+    <Color x:Key="ComplemenairAccent01">#FFAF48</Color>
+    <Color x:Key="ComplemenairAccent02">#FFC374</Color>
+    <Color x:Key="ComplemenairAccent03">#FF9000</Color>
+    <Color x:Key="ComplemenairAccent04">#C77100</Color>
+
+    <Color x:Key="Neutral00">#FFFFFF</Color>
+    <Color x:Key="Neutral01">#EDEDED</Color>
+    <Color x:Key="Neutral02">#DBDBDA</Color>
+    <Color x:Key="Neutral03">#C9C9C8</Color>
+    <Color x:Key="Neutral04">#B7B6B6</Color>
+    <Color x:Key="Neutral05">#A5A4A4</Color>
+    <Color x:Key="Neutral06">#939292</Color>
+    <Color x:Key="Neutral07">#81807F</Color>
+    <Color x:Key="Neutral08">#6F6E6D</Color>
+    <Color x:Key="Neutral09">#61605F</Color>
+    <Color x:Key="Neutral10">#535252</Color>
+    <Color x:Key="Neutral11">#454544</Color>
+    <Color x:Key="Neutral12">#373737</Color>
+    <Color x:Key="Neutral13">#2A2929</Color>
+    <Color x:Key="Neutral14">#1C1B1B</Color>
+    <Color x:Key="Neutral15">#0E0E0E</Color>
+    <Color x:Key="Neutral16">#000000</Color>
+
+    <Color x:Key="Error1">#FF5B1E</Color>
+    <Color x:Key="Error2">#FF7A48</Color>
+    <Color x:Key="Error3">#FF9A74</Color>
+    <Color x:Key="Error4">#FF4500</Color>
+    <Color x:Key="Error5">#C73600</Color>
+
+    <Color x:Key="OrderOne">#ff0000</Color>
+    <Color x:Key="OrderTwo">#004bb3</Color>
+    <Color x:Key="OrderThree">#fff80b</Color>
+    <Color x:Key="OrderFour">#00ff00</Color>
+    <Color x:Key="OrderFive">#b3009c</Color>
+    <Color x:Key="OrderSix">#8f0000</Color>
+    <Color x:Key="OrderSeven">#54acf5</Color>
+    <Color x:Key="OrderEight">#ff9c35</Color>
+    <Color x:Key="OrderNine">#107010</Color>
+    <Color x:Key="OrderTen">#b35ee6</Color>
+
+
+</ResourceDictionary>

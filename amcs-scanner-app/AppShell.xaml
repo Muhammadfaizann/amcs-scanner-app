@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="amcs_scanner_app.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:amcs_scanner_app"
+       FlyoutBehavior="Flyout"
+       FlyoutBackgroundColor="{AppThemeBinding Light=LightGray,Dark=Black}">
+
+    <FlyoutItem FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:View.LoginPage}"
+                      Route="LoginPage" />
+    </FlyoutItem>
+
+    <Shell.FlyoutHeader>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="5"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ImageButton Margin="20,0,0,0"
+                         Padding="0,0,10,0"
+                         Grid.Row="0"
+                         BorderWidth="0"
+                         HorizontalOptions="Start"
+                         Source="{AppThemeBinding Light=hamburger_light.png,Dark=hamburger_dark.png}"
+                         WidthRequest="100"
+                         HeightRequest="50"
+                         Clicked="ToogleFlyout" />
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource Gray400},Dark={StaticResource White}}" />
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource Gray400},Dark={StaticResource White}}" />
+        </Grid>
+    </Shell.FlyoutHeader>
+    <Shell.FlyoutContent>
+            <Grid
+                Grid.Column="0"
+                RowDefinitions="40,40,40,40,40"
+                ColumnDefinitions="*"
+                Padding="20,20,20,20">
+
+                     <Grid Grid.Row="0" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ImageButton Grid.Column="0"
+                             Source="{AppThemeBinding Dark=sun_dark.png,Light=moon_light.png}"
+                             Clicked="ToggleDarkMode"></ImageButton>
+                        <Button
+                                Grid.Column="1"
+                                x:Name="ToogleDarkModeBtn"
+                                Clicked="ToggleDarkMode"
+                                Text="{AppThemeBinding Dark=Light Mode,Light=Dark Mode}"
+                                BorderWidth="0"
+                                VerticalOptions="Center"
+                                TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                                BackgroundColor="Transparent"
+                                BorderColor="Black"></Button>
+                    </Grid>
+
+                     <Grid Grid.Row="1" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ImageButton Grid.Column="0"
+                                     Source="{AppThemeBinding Light=user_light.png, Dark=user_dark.png}"
+                                     Clicked="UserBtn_Clicked"></ImageButton>
+                        <Button Grid.Column="1"
+                                x:Name="UserBtn"
+                                Text="User"
+                                BorderWidth="0"
+                                VerticalOptions="Center"
+                                Clicked="UserBtn_Clicked"
+                                TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                                BackgroundColor="Transparent"
+                                BorderColor="Black"></Button>
+                    </Grid>
+
+                     <Grid Grid.Row="2" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                         <ImageButton Grid.Column="0"
+                             Source="{AppThemeBinding Light=settings_dark.png, Dark=settings_light.png}"
+                             Clicked="SettingsBtn_Clicked"></ImageButton>
+                        <Button Grid.Column="1"
+                                x:Name="SettingsBtn"
+                                Text="Settings"
+                                BorderWidth="0"
+                                VerticalOptions="Center"
+                                Clicked="SettingsBtn_Clicked"
+                                TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                                BackgroundColor="Transparent"
+                                BorderColor="Black"></Button>
+                    </Grid>
+
+                     <Grid Grid.Row="3" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                         <ImageButton Grid.Column="0"
+                             Source="{AppThemeBinding Light=about_light.png, Dark=about_dark.png}"
+                             Clicked="AboutBnt_Clicked"></ImageButton>
+                        <Button Grid.Column="1"
+                                x:Name="AboutBnt"
+                                Text="About"
+                                BorderWidth="0"
+                                VerticalOptions="Center"
+                                Clicked="AboutBnt_Clicked"
+                                TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                                BackgroundColor="Transparent"
+                                BorderColor="Black"></Button>
+                    </Grid>
+
+                     <Grid Grid.Row="4" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                         <ImageButton Grid.Column="0"
+                             Source="{AppThemeBinding Light=abmelden_light.png, Dark=abmelden_dark.png}"
+                             Clicked="AbmeldenBtn_Clicked"></ImageButton>
+                        <Button Grid.Column="1"
+                                x:Name="AbmeldenBtn"
+                                Text="Log out"
+                                BorderWidth="0"
+                                VerticalOptions="Center"
+                                Clicked="AbmeldenBtn_Clicked"
+                                TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                                BackgroundColor="Transparent"
+                                BorderColor="Black"></Button>
+                    </Grid>
+                 
+            </Grid>
+    </Shell.FlyoutContent>
+</Shell>

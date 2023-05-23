@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="amcs_scanner_app.View.ShowItemWiege"
+             Title="ShowItemWiege"
+             xmlns:localization="clr-namespace:amcs_scanner_app.Resources.Localization"
+             Shell.BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"
+             Shell.ForegroundColor="{AppThemeBinding Light=Black,Dark=White}"
+             BackgroundColor="{AppThemeBinding Light=White,Dark=Black}">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False"
+                            IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <VerticalStackLayout VerticalOptions="Start"
+                             Margin="30,0,30,0"
+                             Grid.Row="0"
+                             HorizontalOptions="Fill"
+                             BackgroundColor="{AppThemeBinding Light={StaticResource White},Dark={StaticResource Gray300}}">
+            <!-- CloseButton-->
+            <Grid HeightRequest="40"
+                  BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="PositionWiege"
+                       Grid.Column="0"
+                       Margin="10,0,0,0"
+                       FontSize="18"
+                       TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                       VerticalTextAlignment="Center"
+                       VerticalOptions="Center" />
+                <Button Grid.Column="1"
+                        x:Name="CloseListItemBtnWiege"
+                        Text="X"
+                        FontSize="18"
+                        CornerRadius="0"
+                        Clicked="CloseItemWiege"
+                        Padding="65,0,0,0"
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}" />
+            </Grid>
+            <!-- HeaderInfo -->
+            <!--  Mitte   -->
+            <StackLayout Orientation="Vertical"
+                         HorizontalOptions="CenterAndExpand"
+                         VerticalOptions="CenterAndExpand"
+                         BackgroundColor="{AppThemeBinding Light=White,Dark={StaticResource Gray300}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="40"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ScrollView x:Name="ViewItemName"
+                                Grid.Row="0"
+                                Grid.ColumnSpan="3"
+                                Grid.Column="0">
+                        <Label x:Name="ItemNameWiege"
+                               Margin="0,0,0,5"
+                               TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                               FontSize="18"
+                               Text="ArticlePosition"
+                               VerticalOptions="Center" />
+                    </ScrollView>
+                    <Label x:Name="SuccessfulWiege"
+                           Grid.Row="0"
+                           Grid.Column="2"
+                           Grid.ColumnSpan="2"
+                           BackgroundColor="{StaticResource StatusIncorrect}"
+                           HeightRequest="25"
+                           WidthRequest="25"
+                           HorizontalOptions="End"
+                           Margin="0,0,0,0" />
+                    <Label x:Name="UnitNameWiege"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Margin="0,0,0,5"
+                           TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                           FontSize="18"
+                           HorizontalTextAlignment="Start" />
+                    <Label x:Name="AmountWiege"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="0,0,5,5"
+                           TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                           FontSize="18"
+                           HorizontalTextAlignment="End" />
+                    <Label x:Name="AmountUnitWiege"
+                           Grid.Row="1"
+                           Grid.Column="2"
+                           Grid.ColumnSpan="2"
+                           Margin="0,0,0,5"
+                           TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                           FontSize="18"
+                           HorizontalTextAlignment="Start" />
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Margin="0,0,0,0"
+                           TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                           FontSize="18"
+                           Text="{x:Static localization:AppResources.Rest}"
+                           HorizontalTextAlignment="Start" />
+                    <Label x:Name="RemnantAmountWiege"
+                           Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="0,0,5,0"
+                           TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                           FontSize="18"
+                           HorizontalTextAlignment="End" />
+                    <BoxView Color="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                             Grid.Row="3"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="4"
+                             HeightRequest="1"
+                             VerticalOptions="End" />
+                </Grid>
+            </StackLayout>
+            <!-- ListView Storageplaces-->
+            <Grid BackgroundColor="{AppThemeBinding Light=White,Dark={StaticResource Gray300}}"
+                  x:Name="GridStoragesWiege"
+                  Padding="0,5,5,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="40"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label  Text="{x:Static localization:AppResources.Storages}"
+                        Grid.Column="0"
+                        FontSize="18" />
+                <ImageButton Grid.Row="0"
+                             x:Name="ShowWebViewBtn"
+                             Grid.Column="2"
+                             Source="{AppThemeBinding Light=speechbubble_light.png,Dark=speechbubble_dark.png}"
+                             Clicked="ShowWebView"
+                             HeightRequest="20"
+                             WidthRequest="20"
+                             BackgroundColor="Transparent"
+                             Padding="0,0,0,0"
+                             HorizontalOptions="End" />
+            </Grid>
+            <BoxView Color="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                     HeightRequest="1"
+                     VerticalOptions="End" />
+            <ScrollView x:Name="ScrollStoragePlaces"
+                        HorizontalScrollBarVisibility="Always"
+                        VerticalScrollBarVisibility="Always">
+                <StackLayout x:Name="StoragePlacesWiege">
+                    <!--  Lagerplätze     und     Eingabefelder für den Lagerplatz         -->
+                </StackLayout>
+            </ScrollView>
+            <!-- Confirmbutton -->
+            <Button x:Name="StoragePlaceResetBtn"
+                    Text="Reset"
+                    FontSize="18"
+                    TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Blue100Accent},Dark={StaticResource Blue300Accent}}"
+                    Padding="0,0,0,0"
+                    Opacity="0.8"
+                    HorizontalOptions="Fill"
+                    Margin="20,15,20,10"
+                    Clicked="StoragePlaceResetBtn_Clicked" />
+            <Button x:Name="SendItemBtnWiege"
+                    Text="Senden"
+                    FontSize="18"
+                    TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Blue100Accent},Dark={StaticResource Blue300Accent}}"
+                    Padding="0,0,0,0"
+                    Opacity="0.8"
+                    HorizontalOptions="Fill"
+                    Margin="20,0,20,0"
+                    IsVisible="false"
+                    Clicked="SendWiege" />
+        </VerticalStackLayout>
+        <VerticalStackLayout x:Name="ViewHTMLWebView"
+                             Margin="40,0,40,0"
+                             Grid.Row="0"
+                             IsVisible="False"
+                             VerticalOptions="Center"
+                             BackgroundColor="LightGrey">
+            <Button Text="X"
+                    TextColor="Black"
+                    FontSize="18"
+                    HorizontalOptions="End"
+                    Clicked="CloseWebView"
+                    HeightRequest="20"
+                    WidthRequest="20"
+                    BackgroundColor="White"
+                    Padding="0,0,0,0" />
+            <WebView x:Name="HTMLWebView"
+                     BackgroundColor="LightGray" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

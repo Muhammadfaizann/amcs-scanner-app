@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="amcs_scanner_app.View.WaitingForConnection"
+             xmlns:localization="clr-namespace:amcs_scanner_app.Resources.Localization"
+             Title="WaitingForConnection">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False"
+                            IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <Shell.TitleView>
+        <Grid  ColumnDefinitions="auto,*" BackgroundColor="{AppThemeBinding Light=White,Dark=Black}">
+            <ImageButton Grid.Column="0" Source="{AppThemeBinding Light=hamburger_light.png,Dark=hamburger_dark.png}" Clicked="FlyoutOpen" BorderColor="Black" BorderWidth="0" BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"  WidthRequest="50" HeightRequest="50"></ImageButton>
+
+            <Image Grid.Column="1"  Margin="50,50,50,50"
+                Source="logodelta_weiss_730x135.png"
+                SemanticProperties.Description="Logo of Am-Computersysteme"
+                HeightRequest="30"
+                HorizontalOptions="End"/>
+        </Grid>
+    </Shell.TitleView>
+    <VerticalStackLayout>
+        <Label Text="{x:Static localization:AppResources.WaitingForCacheCleared}"
+               VerticalOptions="Center"
+               HorizontalOptions="Center" />
+        <ActivityIndicator x:Name="Spinner"
+                           WidthRequest="50"
+                           HeightRequest="50"
+                           IsVisible="True"
+                           IsRunning="True"
+                           Color="{AppThemeBinding Light=Black,Dark={StaticResource Gray200}}" />
+    </VerticalStackLayout>
+</ContentPage>

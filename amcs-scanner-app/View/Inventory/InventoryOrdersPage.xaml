@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="amcs_scanner_app.View.Inventory.InventoryOrdersPage"
+             xmlns:localization="clr-namespace:amcs_scanner_app.Resources.Localization"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             Shell.BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"
+             Shell.ForegroundColor="{AppThemeBinding Light=Black,Dark=White}"
+             BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False"
+             Shell.FlyoutBehavior="Disabled">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False"
+                            IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <Shell.TitleView >
+        <Grid BackgroundColor="{AppThemeBinding Light=White,Dark=Black}" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ImageButton x:Name="ButtonFlyoutOpen" Grid.Column="0" Source="{AppThemeBinding Light=hamburger_light.png,Dark=hamburger_dark.png}"
+                         Clicked="FlyoutOpen"
+                         BorderColor="Black"
+                         BorderWidth="0"
+                         BackgroundColor="{AppThemeBinding Light=White,Dark=Black}" HorizontalOptions="Start"
+                         ></ImageButton>
+            <Image  Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Source="logodelta_weiss_730x135.png"
+                    SemanticProperties.Description="Logo of Am-Computersysteme"
+                    HeightRequest="30"
+                    HorizontalOptions="Center" />
+        </Grid>
+    </Shell.TitleView>
+
+
+
+    <Grid >
+        <Grid.RowDefinitions >
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <FlexLayout Grid.Row="0"
+                    Direction="Column"
+                    AlignItems="Stretch"
+                    JustifyContent="SpaceEvenly"
+            Margin="30,0,30,30" 
+                 >
+            <Grid FlexLayout.Basis="70" x:Name="ButtonsViewElement"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" HeightRequest="50" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                                    x:Name="SortStartDateBtn"
+                                    Text="{x:Static localization:AppResources.Start}"
+                                    FontSize="18"
+                                    Clicked="SortStartDate"
+                                    CornerRadius="0"
+                                    Padding="0"
+                                    TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                    BackgroundColor="Transparent" />
+                <ImageButton Grid.Column="1"
+                                         x:Name="SortStartDateImage"
+                                         IsEnabled="True"
+                                         
+                                         HeightRequest="15"
+                                         WidthRequest="10"
+                                         Clicked="SortStartDate" />
+
+                <Button Grid.Column="2"
+                                    x:Name="SortEndDateBtn"
+                                    Text="{x:Static localization:AppResources.End}"
+                                    FontSize="18"
+                                    TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                    Clicked="SortEndDate"
+                                    Padding="0"
+                                    BackgroundColor="Transparent"
+                                    CornerRadius="0" />
+                <ImageButton Grid.Column="3"
+                                         x:Name="SortEndDateImage"
+                                         IsEnabled="True"
+                                         
+                                         HeightRequest="15"
+                                         WidthRequest="10"
+                                         Clicked="SortEndDate" />
+
+                <Button Grid.Column="4"
+                                    x:Name="SortItemCountBtn"
+                                    Text="{x:Static localization:AppResources.Amount}"
+                                    FontSize="18"
+                                    TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                    Clicked="SortItemCount"
+                                    Padding="0"
+                                    BackgroundColor="Transparent"
+                                    CornerRadius="0" />
+                <ImageButton Grid.Column="5"
+                                        x:Name="SortItemCountImage"
+                                         IsEnabled="True"
+                                         
+                                         HeightRequest="15"
+                                         WidthRequest="10"
+                                         Clicked="SortItemCount" />
+            </Grid>
+
+
+
+            <ListView  Margin="0,0,0,0" android:ListView.IsFastScrollEnabled="true"
+                               x:Name="ListOrders"
+                               SelectionMode="None"
+                               VerticalScrollBarVisibility="Never"
+                               HorizontalScrollBarVisibility="Never"
+                               SeparatorColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                           HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell ClassId="{Binding Position}"
+                                          Tapped="ListOrders_ItemTapped"  >
+                            <!-- Background Heller + oppacity denke 0.4-->
+                            <Grid BackgroundColor="{Binding ColorBackgrItem}" Opacity="{Binding Opacitylevel}"
+                                              >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="110"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="40"></ColumnDefinition>
+                                    <ColumnDefinition Width="40"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition ></RowDefinition>
+                                    <RowDefinition ></RowDefinition>
+                                    <RowDefinition ></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <!--  <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" HeightRequest="3" VerticalOptions="Start" Color="{Binding ColorStatus}" /> -->
+                                <Label  Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    Text="{Binding Position}"
+                                                    FontSize="18"
+                                                    TextColor="{Binding ColorTextItem}"
+                                                    VerticalOptions="Center"
+                                                    HorizontalTextAlignment="Start" />
+                                <Label  Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Grid.ColumnSpan="2"
+                                                    Text="{Binding Id}"
+                                                    FontSize="18"
+                                                    TextColor="{Binding ColorTextItem}" />
+                                <ImageButton Grid.Row="0"
+                                                         Grid.Column="4"
+                                                         Source="{AppThemeBinding Light=speechbubble_light.png,Dark=speechbubble_dark.png}"
+                                                         Clicked="ShowWebView"
+                                                         HeightRequest="20"
+                                                         WidthRequest="20"
+                                                         BackgroundColor="Transparent"
+                                                         Padding="0,0,0,0"
+                                                         ClassId="{Binding Position}" />
+                                <Label  Grid.Row="1"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="2"
+                                                    Text="{Binding StartDate}"
+                                                    FontSize="18"
+                                                    Margin="2,0,0,0"
+                                                    TextColor="{Binding ColorTextItem}" />
+                                
+                                <Button Grid.Row="1"
+                                                    Grid.Column="4"
+                                                    BackgroundColor="{Binding ColorStatus}"
+                                                    CornerRadius="2"
+                                                    HeightRequest="20"
+                                                    WidthRequest="20" />
+                                <Label  Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    Grid.ColumnSpan="3"
+                                                    Text="{Binding EndDate}"
+                                                    TextColor="{Binding ColorTextItem}"
+                                                    FontSize="18"
+                                                    Margin="2,0,0,0" />
+                                
+                                <Label  Grid.Row="2"
+                                                    Grid.Column="0"
+                                        Grid.ColumnSpan="3"
+                                                    FontSize="18"
+                                                    Text="{x:Static localization:AppResources.Positions}"
+                                                    HorizontalTextAlignment="End"
+                                                    Margin="0,0,10,0"
+                                                    TextColor="{Binding ColorTextItem}" />
+                                <Label  Grid.Row="2"
+                                                    Grid.Column="3"
+                                                    HorizontalTextAlignment="End"
+                                                    FontSize="18"
+                                                    Text="{Binding ItemCount}"
+                                                    TextColor="{Binding ColorTextItem}"
+                                                    Margin="0,0,5,0" />
+                                
+                                
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </FlexLayout>
+        <Button Grid.Row="0"
+            x:Name="ShowSelectedOrdersBtn"
+                Text="+"
+                Padding="0,0,0,0"
+                FontSize="80"
+                Opacity="0.7"
+                IsVisible="false"
+                TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                Clicked="ShowSelectedOrders"
+                WidthRequest="120"
+                HeightRequest="120"
+                CornerRadius="100"
+                VerticalOptions="End"
+                BackgroundColor="{AppThemeBinding Light={StaticResource Blue100Accent},Dark={StaticResource Blue300Accent}}" />
+
+        <FlexLayout x:Name="ViewSelectedOrders" 
+                    Margin="30,0,30,0"
+                                 Grid.Row="0"
+                                 IsVisible="False"
+                    Direction="Column" 
+                    AlignItems="Stretch" 
+                   VerticalOptions="StartAndExpand" >
+
+            <!-- CloseButton-->
+            <Grid HeightRequest="35" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" VerticalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="70"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <Label Grid.Column="0"
+                       Text="{x:Static localization:AppResources.PickedOrders}"
+                               Margin="10,0,0,0"
+                               FontSize="18"
+                               TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                               VerticalTextAlignment="Center"
+                               VerticalOptions="Center"
+                                />
+                <Button Grid.Column="1"
+                                Clicked="CloseSelectedOrder"
+                                Text="X"
+                                FontSize="18"
+                                CornerRadius="0"
+                                Padding="35,0,0,0"
+                                BackgroundColor="Transparent"
+                                TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                VerticalOptions="Center"
+                                 />
+            </Grid>
+            <!--BoxView Color="White" HeightRequest="1" VerticalOptions="End" /-->
+
+            <ListView  Margin="0,0,0,0" 
+                               x:Name="ListPickingOrders"
+                               RowHeight="150"
+                               SelectionMode="None"
+                               VerticalOptions="Center"
+                               VerticalScrollBarVisibility="Never"
+                               HorizontalScrollBarVisibility="Never"
+                       >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <!-- Auftrag Info  (Margin: links oben rechts unten) -->
+                            <VerticalStackLayout  Padding="0,0,0,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="120"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="{Binding Position}"
+                                                   Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                                   FontSize="18" />
+                                    <Label Grid.Row="1"
+                                                   Grid.Column="0"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                                   Text="{x:Static localization:AppResources.Order}"
+                                                   FontSize="18"
+                                                   HorizontalOptions="Start" />
+                                    <Label Text="{Binding Id}"
+                                                   Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   Grid.ColumnSpan="2"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                                   FontSize="18"
+                                                   HorizontalOptions="End"
+                                                   Margin="0,0,10,0" />
+                                    <Label Grid.Row="2"
+                                                   Grid.Column="0"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                                   Text="{x:Static localization:AppResources.Start}"
+                                                   FontSize="18"
+                                                   HorizontalOptions="Start" />
+                                    <Label Text="{Binding StartDate}"
+                                                   Grid.Row="2"
+                                                   Grid.Column="1"
+                                                   Grid.ColumnSpan="2"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                                   FontSize="18"
+                                                   HorizontalOptions="End"
+                                                   Margin="0,0,10,0" />
+                                    <Label Grid.Row="3"
+                                                   Grid.Column="0"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                                   Text="{x:Static localization:AppResources.End}"
+                                                   FontSize="18"
+                                                   HorizontalOptions="Start" />
+                                    <Label Text="{Binding EndDate}"
+                                                   Grid.Row="3"
+                                                   Grid.Column="1"
+                                                   Grid.ColumnSpan="2"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                                   FontSize="18"
+                                                   HorizontalOptions="End"
+                                                   Margin="0,0,10,0" />
+                                    <Label Grid.Row="4"
+                                                   Grid.Column="0"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                                   FontSize="18"
+                                                   HorizontalOptions="Start" />
+                                    <HorizontalStackLayout Grid.Row="4"
+                                                                   Grid.Column="1"
+                                                                   Grid.ColumnSpan="2"
+                                                                   HorizontalOptions="End">
+                                        <Label Text="{Binding StatusName}"
+                                                       TextColor="{Binding ColorStatus}"
+                                                       FontSize="18"
+                                                       HorizontalOptions="End" />
+                                        <Label BackgroundColor="{Binding ColorStatus}"
+                                                       HeightRequest="20"
+                                                       WidthRequest="20"
+                                                       Margin="5,0,5,0" />
+                                    </HorizontalStackLayout>
+                                    <Label Grid.Row="5"
+                                                   Grid.Column="0"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                                   Text="{x:Static localization:AppResources.Positions}"
+                                                   FontSize="18"
+                                                   HorizontalOptions="Start" />
+                                    <Label Text="{Binding ItemCount}"
+                                                   x:Name="ViewOrderItemCount"
+                                                   Grid.Row="6"
+                                                   Grid.Column="2"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                                   FontSize="18"
+                                                   HorizontalOptions="End"
+                                                   Margin="0,0,10,0" />
+                                    <BoxView Grid.Row="5"
+                                                     Grid.Column="0"
+                                                     Grid.ColumnSpan="3"
+                                                     HeightRequest="1"
+                                                     VerticalOptions="End"
+                                                     Color="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                                     Margin="0,0,0,0" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <Button x:Name="StartBtn" FlexLayout.Basis="75"
+                        Margin="20,10,20,0"
+                        Text="{x:Static localization:AppResources.Start}"
+                        FontSize="18"
+                        Opacity="0.8"
+                        TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Blue100Accent},Dark={StaticResource Blue300Accent}}"
+                        Clicked="Start"
+                        IsVisible="true" />
+        </FlexLayout>
+
+
+        <!--HtmlView -->
+        <VerticalStackLayout Grid.Row="0" Margin="40,0,40,0"
+                             x:Name="ViewHTMLWebView"
+                                 IsVisible="False"
+                                 VerticalOptions="Center"
+                                 BackgroundColor="LightGrey">
+            <Button Text="X"
+                        TextColor="Black"
+                        FontSize="18"
+                        HorizontalOptions="End"
+                        Clicked="CloseWebView"
+                        HeightRequest="20"
+                        WidthRequest="20"
+                        BackgroundColor="White"
+                        Padding="0,0,0,0" />
+            <WebView x:Name="HTMLWebView"
+                         BackgroundColor="LightGray" />
+        </VerticalStackLayout>
+
+        <ActivityIndicator Grid.Row="0"
+            x:Name="Spinner" 
+                                   WidthRequest="150"
+                                   HeightRequest="150"
+                                   IsVisible="True"
+                                   IsRunning="False"
+                                   Color="Black" />
+
+    </Grid>
+</ContentPage>

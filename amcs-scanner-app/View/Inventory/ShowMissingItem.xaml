@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="amcs_scanner_app.View.Inventory.ShowMissingItem"
+             xmlns:localization="clr-namespace:amcs_scanner_app.Resources.Localization"
+             Shell.BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"
+             Shell.ForegroundColor="{AppThemeBinding Light=Black,Dark=White}"
+             BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"
+             Shell.FlyoutBehavior="Disabled">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False"/>
+    </Shell.BackButtonBehavior>
+
+    <Grid  Margin="30,30,30,0"
+                         
+                             VerticalOptions="Start"
+                             BackgroundColor="{AppThemeBinding Light=White,Dark={StaticResource Gray300}}" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" ></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="18"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <HorizontalStackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalOptions="Fill" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" Margin="0,0,0,0"/>
+
+        <Button Grid.Column="2" Grid.Row="0"
+                                x:Name="CloseListItemBtn"
+                                Text="X"
+                                FontSize="18"
+                HorizontalOptions="End"
+                                CornerRadius="0"
+                                Clicked="CloseItem"
+                                Padding="0,0,20,0"
+                                BackgroundColor="Transparent"
+                                TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"/>
+
+        <VerticalStackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="60" BackgroundColor="{AppThemeBinding Light=White,Dark={StaticResource Gray300}}">
+            <Label  Text="{x:Static localization:AppResources.Article}"        />
+            <Border Padding="0,0,0,0" StrokeShape="RoundRectangle 5,5,5,5" Margin="0,0,0,0" HeightRequest="30"
+                    Stroke="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}" HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+        <Entry  x:Name="ItemId" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Placeholder = "ID"
+                                                   HorizontalOptions="Fill"
+                                                   VerticalOptions ="Center"
+                                                   FontSize="18"
+                                       Keyboard="Default" 
+                            IsPassword="False"
+                                       Margin="10,8,0,0" 
+                                      TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                Completed="Entry_Completed"
+                            />
+
+        <VerticalStackLayout Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" HeightRequest="60" BackgroundColor="{AppThemeBinding Light=White,Dark={StaticResource Gray300}}">
+            <Label  Text="{x:Static localization:AppResources.Storage}"       />
+            <Border Padding="0,0,0,0" StrokeShape="RoundRectangle 5,5,5,5" Margin="0,0,0,0" HeightRequest="30"
+                    Stroke="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}" HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+        <Entry  x:Name="StorageID" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3"
+                                                   Placeholder="ID"
+                Completed="Entry_Completed"
+                                        IsPassword="False"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   Margin="10,16,0,0"
+                                        Keyboard="Default" 
+                                                   FontSize="18"
+                                                   HorizontalTextAlignment="Start"   />
+
+        <Label  Text="{x:Static localization:AppResources.CountedAmount}"  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" />
+        <Border Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" BackgroundColor="{AppThemeBinding Light=White,Dark={StaticResource Gray300}}"
+                                    Padding="5,1,5,1"
+                                    StrokeShape="RoundRectangle 5,5,5,5" HeightRequest="30"
+                                    Margin="0,1,0,0"
+                                      Stroke="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"  />
+
+        <Entry  x:Name="Amount" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+                          TextChanged="StorageAdd"
+                                                   HorizontalOptions="Fill"
+                                                   VerticalOptions ="Center"
+                                                   FontSize="18"
+                Completed="Entry_Completed"
+                                       Keyboard="Numeric" IsPassword="False"
+                                                   Text="{Binding StorageId}"
+                                       Margin="10,2,0,0" 
+                HeightRequest="45"
+                                       TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"/>
+                                                    
+        <Border Grid.Column="2" Grid.Row="4" BackgroundColor="{AppThemeBinding Light=White,Dark={StaticResource Gray300}}"
+                                    Padding="5,1,5,1"
+                                    StrokeShape="RoundRectangle 5,5,5,5" HeightRequest="30"
+                                    Margin="5,1,0,0"
+                                        Stroke="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"/>
+        <Entry x:Name="AmountUnit" Grid.Column="2" Grid.Row="4"
+                                                   
+                                        IsPassword="False"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   Keyboard="Default"
+               Completed="Entry_Completed"
+                                                   Margin="15,3,0,0" HeightRequest="45"
+                                                   FontSize="18"
+                                                   HorizontalTextAlignment="Start" />
+       
+        <Button x:Name="SendItemBtn" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"
+                            Text="{x:Static localization:AppResources.Send}"
+                            FontSize="18"
+                            TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource Blue100Accent},Dark={StaticResource Blue300Accent}}"
+                            Clicked="SendPiece"
+                            Padding="0,0,0,0"
+                            Opacity="0.8"
+                            HorizontalOptions="Fill"
+                            Margin="20,50,20,0"
+                            IsVisible="true" />
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localization="clr-namespace:amcs_scanner_app.Resources.Localization"
+             x:Class="amcs_scanner_app.View.OverviewPage"
+             Shell.BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"
+             Shell.ForegroundColor="{AppThemeBinding Light=Black,Dark=White}"
+             BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False"
+             Shell.FlyoutBehavior="Flyout">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False"
+                            IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <Shell.TitleView>
+        <Grid  ColumnDefinitions="auto,*" BackgroundColor="{AppThemeBinding Light=White,Dark=Black}">
+            <ImageButton Grid.Column="0" Source="{AppThemeBinding Light=hamburger_light.png,Dark=hamburger_dark.png}" Clicked="FlyoutOpen" BorderColor="Black" BorderWidth="0" BackgroundColor="{AppThemeBinding Light=White,Dark=Black}"  WidthRequest="50" HeightRequest="50"></ImageButton>
+
+            <Image Grid.Column="1"  Margin="50,50,50,50"
+                Source="logodelta_weiss_730x135.png"
+                SemanticProperties.Description="Logo of Am-Computersysteme"
+                HeightRequest="30"
+                HorizontalOptions="End"/>
+        </Grid>
+    </Shell.TitleView>
+    <Grid x:Name="FlexOverviewPage" VerticalOptions="Center"
+                RowDefinitions="auto,auto,auto,auto,auto">
+        <Label Grid.Row="0"
+               Text="{x:Static localization:AppResources.LoginTitle}"
+               SemanticProperties.HeadingLevel="Level1"
+               TextColor="{AppThemeBinding Light=Black,Dark=White}"
+               FontSize="18"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center" />
+        <Button Grid.Row="1"
+                x:Name="WareEntryBtn"
+                Text="{x:Static localization:AppResources.IncomingGoods}"
+                FontSize="18"
+                CornerRadius="15"
+                TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                Clicked="NavigateToWareEntry"
+                BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500} }"
+                Margin="20,0,20,20" />
+        <Button Grid.Row="2"
+                x:Name="LagerhaltungBtn"
+                Text="{x:Static localization:AppResources.Warehousing}"
+                FontSize="18"
+                CornerRadius="15"
+                TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                Clicked="NavigateToStorage"
+                BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500} }"
+                Margin="20,0,20,20" />
+        <Button  Grid.Row="3"
+                 x:Name="PickingBtn"
+                 Text="{x:Static localization:AppResources.Picking}"
+                 FontSize="18"
+                 CornerRadius="15"
+                 TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                 Clicked="NavigateToPicking"
+                 BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500} }"
+                 Margin="20,0,20,20" />
+        <Button Grid.Row="4"
+                x:Name="InventurBtn"
+                Text="{x:Static localization:AppResources.Inventory}"
+                FontSize="18"
+                CornerRadius="15"
+                TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                Clicked="NavigateToInventur"
+                BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500} }"
+                IsEnabled="False"
+                Margin="20,0,20,20" />
+    </Grid>
+</ContentPage>

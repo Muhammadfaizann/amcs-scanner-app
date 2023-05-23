@@ -1,0 +1,63 @@
+trigger:
+  - master
+
+jobs:
+  - job: android
+    pool:
+      vmImage: "macos-latest"
+    variables:
+      - group: secrets
+      - group: general
+      - name: androidReleaseDir
+        value: $(build.artifactStagingDirectory)/build/app/outputs/flutter-apk
+      - name: apkFile
+        value: $(androidReleaseDir)/app-release.apk
+    steps:
+      - task: FlutterInstall@0
+    displayName: "Install Flutter"
+    inputs:
+      mode: "auto"
+      channel: "stable"
+      version: "custom"
+      customVersion: "2.2.3"
+
+  - task: FlutterBuild@0
+    displayName: "Build unsigned APK"
+    inputs:
+      target: apk
+      projectDirectory: "."
+      buildNumber: ""
+
+  - task: AndroidSigning@3
+    displayName: "Signing and aligning APK file(s) **/*.apk"
+    inputs:
+      apkFiles: "**/*.apk"
+      apksign: true
+      apksignerKeystoreFile: android-key.jks
+      apksignerKeystorePassword: "$(androidKeystorePassword)"
+      apksignerKeystoreAlias: helloworld-counterapp
+      apksignerKeyPassword: "$(androidKeyPassword)"
+
+  - task: CopyFiles@2
+    displayName: "Copy apk to artifact directory"
+    inputs:
+      contents: "**/*.apk"
+      targetFolder: "$(build.artifactStagingDirectory)"
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish signed apk as artifact"
+    inputs:
+      artifactName: "drop"
+
+  - task: Bash@3
+    displayName: "Upload to firebase app distribution"
+    inputs:
+      targetType: "inline"
+      script: |
+        npm i -g firebase-tools
+        ls -la $(androidReleaseDir)
+        firebase appdistribution:distribute "$(apkFile)" \
+          --app "$(androidFirebaseDistAppId)" \
+          --release-notes "From Azure Devops" \
+          --groups "beta-testers" \
+          --token "$(firebasetoken)"
